@@ -1,0 +1,18 @@
+---
+// The Dagaz rune (ᛞ) in a ring — the Endrheim emblem. Colours follow the theme.
+interface Props { size?: number; ring?: boolean; dot?: boolean; label?: string }
+const { size = 48, ring = true, dot = true, label } = Astro.props;
+---
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 300 300"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+  class="dagaz"
+>
+  {ring && <circle cx="150" cy="150" r="124" fill="none" stroke="var(--line)" stroke-width="6" />}
+  <path d="M 98 88 L 98 212 L 202 88 L 202 212 Z" fill="none" stroke="var(--ink)" stroke-width="16" stroke-linejoin="miter" />
+  {dot && <circle cx="150" cy="150" r="11" fill="var(--accent)" />}
+</svg>

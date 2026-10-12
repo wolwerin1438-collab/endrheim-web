@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import DagazMark from '../components/DagazMark.astro';
+import RuneLine from '../components/RuneLine.astro';
+---
+<Base>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-inner">
+      <RuneLine />
+      <h1 id="hero-title" class="wordmark">Endrheim</h1>
+      <p class="tagline">The world, reborn.</p>
+      <p class="lede">
+        A curated Skyrim Special Edition modlist of more than two thousand mods, built for stability and installed in one go with Wabbajack.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap trailer" aria-labelledby="trailer-title">
+    <h2 id="trailer-title" class="visually-hidden">Trailer</h2>
+    <div class="frame">
+      <DagazMark size={72} label="Trailer placeholder" />
+      <p>The trailer is being recorded.</p>
+    </div>
+  </section>
+
+  <section class="wrap pillars" aria-labelledby="pillars-title">
+    <h2 id="pillars-title">What you get</h2>
+    <div class="grid">
+      <article>
+        <h3>A living world</h3>
+        <p>[Placeholder: towns, NPC life, weather and landscape — written once the build is frozen.]</p>
+      </article>
+      <article>
+        <h3>Combat reforged</h3>
+        <p>[Placeholder: dodging, blocking, movesets and enemy behaviour.]</p>
+      </article>
+      <article>
+        <h3>Built to last</h3>
+        <p>[Placeholder: tested checkpoint by checkpoint; a playthrough without crashes caused by mods is the goal.]</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap install" aria-labelledby="install-title">
+    <h2 id="install-title">Install</h2>
+    <p>Endrheim will be released through Wabbajack, free of charge. The install guide and requirements appear here at release.</p>
+  </section>
+</Base>
+
+<style>
+  .hero { padding-block: clamp(4rem, 12vw, 9rem) clamp(3rem, 8vw, 6rem); text-align: center; }
+  .hero-inner { display: grid; justify-items: center; gap: 1.25rem; }
+  .hero :global(.runes) { font-size: clamp(1.25rem, 3vw, 1.9rem); padding-left: 0.5em; }
+  .wordmark {
+    font-size: var(--step-4);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    padding-left: 0.14em;
+    margin: 0;
+    padding-block: 0.35em;
+    border-block: 1px solid var(--line);
+    width: fit-content;
+    max-width: 100%;
+    padding-inline: 0.5em;
+  }
+  .tagline { font-style: italic; font-size: var(--step-1); color: var(--ink-muted); margin: 0; }
+  .lede { margin-inline: auto; max-width: 40ch; }
+
+  .trailer .frame {
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 1rem;
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    color: var(--ink-muted);
+  }
+  .trailer .frame p { margin: 0; }
+
+  .pillars { margin-top: 5rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2rem 3rem; }
+  .grid article { border-top: 2px solid var(--accent); padding-top: 1rem; }
+  .grid p { color: var(--ink-muted); }
+
+  .install { margin-top: 4rem; }
+</style>

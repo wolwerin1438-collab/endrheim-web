@@ -1,0 +1,5 @@
+[
+  { "name": "Sample mod one", "author": "Sample author", "category": "Bug fixes and technical tweaks", "url": "https://www.nexusmods.com/skyrimspecialedition" },
+  { "name": "Sample mod two", "author": "Sample author", "category": "Combat", "url": "https://www.nexusmods.com/skyrimspecialedition" },
+  { "name": "Sample mod three", "author": "Sample author", "category": "Character appearance", "url": "https://www.nexusmods.com/skyrimspecialedition" }
+]

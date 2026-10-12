@@ -1,0 +1,43 @@
+---
+// Switches between dark and light. The choice is remembered per browser;
+// without a choice the site follows the system setting.
+---
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light mode">
+  <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+    <circle cx="12" cy="12" r="4.5" />
+    <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" />
+  </svg>
+</button>
+
+<script>
+  const root = document.documentElement;
+  const current = () =>
+    root.dataset.theme ?? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  const label = (btn: Element) =>
+    btn.setAttribute('aria-label', current() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+
+  document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
+    label(btn);
+    btn.addEventListener('click', () => {
+      const next = current() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch {}
+      label(btn);
+    });
+  });
+</script>
+
+<style>
+  .theme-toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .theme-toggle:hover { border-color: var(--line); }
+</style>

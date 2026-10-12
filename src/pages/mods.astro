@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+// Placeholder data. Replaced by the export from the build repository's inventory
+// (name, author, category, link) before release.
+import mods from '../data/mods.sample.json';
+
+const byCategory = new Map<string, typeof mods>();
+for (const mod of mods) {
+  const list = byCategory.get(mod.category) ?? [];
+  list.push(mod);
+  byCategory.set(mod.category, list);
+}
+---
+<Base title="Mod list" description="Every mod in Endrheim, with its author and a link to its page.">
+  <div class="wrap page">
+    <h1>Mod list</h1>
+    <p>Every mod in Endrheim with its author and a link to its page. The full list is generated from the build at release; the rows below are samples.</p>
+
+    {[...byCategory].map(([category, list]) => (
+      <section class="cat" aria-labelledby={`cat-${category}`}>
+        <h2 id={`cat-${category}`}>{category}</h2>
+        <div class="table-box">
+          <table>
+            <thead>
+              <tr><th scope="col">Mod</th><th scope="col">Author</th></tr>
+            </thead>
+            <tbody>
+              {list.map((mod) => (
+                <tr>
+                  <td><a href={mod.url} rel="noopener">{mod.name}</a></td>
+                  <td>{mod.author}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .page { padding-top: 4rem; }
+  .cat { margin-top: 3rem; }
+  .table-box { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+  th, td { text-align: left; padding: 0.6rem 1rem 0.6rem 0; border-bottom: 1px solid var(--rule); }
+  th { font-weight: 600; color: var(--ink-muted); }
+  td:last-child { color: var(--ink-muted); }
+</style>
